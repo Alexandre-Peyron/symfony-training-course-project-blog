@@ -2,6 +2,7 @@
 
 namespace Admin\BlogBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +18,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('hat')
-            ->add('content')
+            ->add('content', CKEditorType::class)
             ->add('category', EntityType::class, array(
                 'class' => 'Admin\BlogBundle\Entity\Category',
                 'choice_label' => 'name',
