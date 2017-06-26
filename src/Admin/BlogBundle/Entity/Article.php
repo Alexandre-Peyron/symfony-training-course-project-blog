@@ -58,9 +58,23 @@ class Article
     private $updatedAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Admin\BlogBundle\Entity\Category", inversedBy="articles")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Admin\BlogBundle\Entity\Tag", inversedBy="articles")
+     * @ORM\JoinTable(name="article_tag")
+     */
+    private $tags;
+
+    /**
      * Article constructor.
      */
     public function __construct() {
+        $this->tags = new ArrayCollection();
+
         $this->createdAt = new \DateTime('now');
     }
 
@@ -193,5 +207,63 @@ class Article
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Admin\BlogBundle\Entity\Category $category
+     *
+     * @return Article
+     */
+    public function setCategory(\Admin\BlogBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Admin\BlogBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \Admin\BlogBundle\Entity\Tag $tag
+     *
+     * @return Article
+     */
+    public function addTag(\Admin\BlogBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \Admin\BlogBundle\Entity\Tag $tag
+     */
+    public function removeTag(\Admin\BlogBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
