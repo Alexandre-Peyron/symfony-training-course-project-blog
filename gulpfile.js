@@ -29,6 +29,8 @@ var configAdmin = {
     globalJS:[
         config.bowerDir + '/jquery/dist/jquery.js',
         config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js',
+        config.bowerDir + '/datatables.net/js/jquery.dataTables.js',
+        config.bowerDir + '/datatables.net-bs/js/dataTables.bootstrap.js',
         config.bowerDir + '/gentelella/src/js/helpers/smartresize.js',
         config.bowerDir + '/gentelella/src/js/custom.js'
     ],
@@ -37,7 +39,7 @@ var configAdmin = {
     ],
     fonts: [
         config.bowerDir + '/font-awesome/fonts/**.*',
-        config.bowerDir + '/bootstrap-sass/assets/fonts/bootstrap/**.*'
+        config.bowerDir + '/bootstrap-sass/assets/fonts/bootstrap/**.js'
     ]
 };
 

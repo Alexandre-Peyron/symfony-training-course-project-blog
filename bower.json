@@ -19,6 +19,8 @@
     "gentelella": "^1.4.0",
     "jquery": "^3.2.1",
     "font-awesome": "^4.7.0",
-    "bootstrap-sass": "bootstrap-sass-official#^3.3.7"
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.7",
+    "datatables.net": "^1.10.16",
+    "datatables.net-bs": "^2.1.1"
   }
 }
