@@ -5,7 +5,7 @@ namespace Admin\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class DashboardController extends Controller
 {
     /**
      * @Route("/admin", name="dashboard")
