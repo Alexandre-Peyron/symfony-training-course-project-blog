@@ -10,4 +10,16 @@ namespace Admin\BlogBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Count all Category
+     *
+     * @return int
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('count(c.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

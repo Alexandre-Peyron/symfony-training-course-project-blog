@@ -10,4 +10,16 @@ namespace Admin\BlogBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Count all Article
+     *
+     * @return int
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('count(a.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

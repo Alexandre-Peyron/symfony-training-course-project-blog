@@ -10,4 +10,16 @@ namespace Admin\BlogBundle\Repository;
  */
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Count all Tag
+     *
+     * @return int
+     */
+    public function countAll()
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->select('count(t.id)');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }
