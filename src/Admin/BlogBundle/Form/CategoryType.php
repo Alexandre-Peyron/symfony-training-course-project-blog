@@ -13,7 +13,9 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('slug')->add('description')->add('ordering');
+        $builder
+            ->add('name')
+            ->add('description');
     }
     
     /**
