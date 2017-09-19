@@ -17,7 +17,7 @@ class TagController extends Controller
     /**
      * Lists all tag entities.
      *
-     * @Route("/", name="tag_index")
+     * @Route("/", name="admin_tag_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class TagController extends Controller
     /**
      * Creates a new tag entity.
      *
-     * @Route("/new", name="tag_new")
+     * @Route("/new", name="admin_tag_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,7 +48,7 @@ class TagController extends Controller
             $em->persist($tag);
             $em->flush();
 
-            return $this->redirectToRoute('tag_show', array('id' => $tag->getId()));
+            return $this->redirectToRoute('admin_tag_show', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/new.html.twig', array(
@@ -60,7 +60,7 @@ class TagController extends Controller
     /**
      * Finds and displays a tag entity.
      *
-     * @Route("/{id}", name="tag_show")
+     * @Route("/{id}", name="admin_tag_show")
      * @Method("GET")
      */
     public function showAction(Tag $tag)
@@ -76,7 +76,7 @@ class TagController extends Controller
     /**
      * Displays a form to edit an existing tag entity.
      *
-     * @Route("/{id}/edit", name="tag_edit")
+     * @Route("/{id}/edit", name="admin_tag_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Tag $tag)
@@ -88,7 +88,7 @@ class TagController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('tag_edit', array('id' => $tag->getId()));
+            return $this->redirectToRoute('admin_tag_edit', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/edit.html.twig', array(
@@ -101,7 +101,7 @@ class TagController extends Controller
     /**
      * Deletes a tag entity.
      *
-     * @Route("/{id}", name="tag_delete")
+     * @Route("/{id}", name="admin_tag_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Tag $tag)
@@ -115,7 +115,7 @@ class TagController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('tag_index');
+        return $this->redirectToRoute('admin_tag_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class TagController extends Controller
     private function createDeleteForm(Tag $tag)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('tag_delete', array('id' => $tag->getId())))
+            ->setAction($this->generateUrl('admin_tag_delete', array('id' => $tag->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

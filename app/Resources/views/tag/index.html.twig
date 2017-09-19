@@ -16,17 +16,17 @@
         <tbody>
         {% for tag in tags %}
             <tr>
-                <td><a href="{{ path('tag_show', { 'id': tag.id }) }}">{{ tag.id }}</a></td>
+                <td><a href="{{ path('admin_tag_show', { 'id': tag.id }) }}">{{ tag.id }}</a></td>
                 <td>{{ tag.name }}</td>
                 <td>{{ tag.slug }}</td>
                 <td>{{ tag.description }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('tag_show', { 'id': tag.id }) }}">show</a>
+                            <a href="{{ path('admin_tag_show', { 'id': tag.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('tag_edit', { 'id': tag.id }) }}">edit</a>
+                            <a href="{{ path('admin_tag_edit', { 'id': tag.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('tag_new') }}">Create a new tag</a>
+            <a href="{{ path('admin_tag_new') }}">Create a new tag</a>
         </li>
     </ul>
 {% endblock %}
