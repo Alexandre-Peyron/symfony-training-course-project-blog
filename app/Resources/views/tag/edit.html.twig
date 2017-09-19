@@ -1,21 +1,55 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout-admin.html.twig' %}
 
-{% block body %}
-    <h1>Tag edit</h1>
+{% block content %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Tag <small>Modification</small></h3>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_tag_index') }}">Back to the list</a>
-        </li>
-        <li>
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_content">
+                    {{ form_start(edit_form, {attr: {'class': 'form-horizontal form-label-left'}}) }}
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.name, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.name, {'attr': {'class': 'form-control col-md-7 col-xs-12', 'placeholder': 'Nom'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.description, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.description, {'attr': {'class': 'form-control col-md-7 col-xs-12', 'placeholder': 'Description'}}) }}
+                        </div>
+                    </div>
+
+                    {{ form_widget(edit_form) }}
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <a href="{{ path('admin_tag_index') }}" class="btn btn-primary pull-left" >Retour à la liste</a>
+                            <input type="submit" value="Modifier" class="btn btn-success" />
+                        </div>
+                    </div>
+
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input class="btn btn-danger pull-right" type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
 {% endblock %}

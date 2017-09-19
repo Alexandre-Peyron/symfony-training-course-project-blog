@@ -48,28 +48,12 @@ class TagController extends Controller
             $em->persist($tag);
             $em->flush();
 
-            return $this->redirectToRoute('admin_tag_show', array('id' => $tag->getId()));
+            return $this->redirectToRoute('admin_tag_index');
         }
 
         return $this->render('tag/new.html.twig', array(
             'tag' => $tag,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a tag entity.
-     *
-     * @Route("/{id}", name="admin_tag_show")
-     * @Method("GET")
-     */
-    public function showAction(Tag $tag)
-    {
-        $deleteForm = $this->createDeleteForm($tag);
-
-        return $this->render('tag/show.html.twig', array(
-            'tag' => $tag,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
