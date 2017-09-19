@@ -1,16 +1,76 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout-admin.html.twig' %}
 
-{% block body %}
-    <h1>Article creation</h1>
+{% block content %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Articles <small>Création</small></h3>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_article_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_content">
+                    {{ form_start(form, {attr: {'class': 'form-horizontal form-label-left'}}) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.title, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control col-md-7 col-xs-12', 'placeholder': 'Titre'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.hat, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.hat, {'attr': {'class': 'form-control col-md-7 col-xs-12', 'placeholder': 'Chapeau'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.content, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.content, {'attr': {'class': 'form-control col-md-12 col-xs-12', 'placeholder': 'Chapeau'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.category, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.tags, null, {'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}}) }}
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {% for t in form.tags %}
+                                <div class="checkbox">
+                                    {{ form_label(t, null, {'label_attr': {'class': ''}}) }}
+                                    {{ form_widget(t, {'attr': {'style': 'position:relative;margin-left:0px'}}) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {{ form_widget(form) }}
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <a href="{{ path('admin_article_index') }}" class="btn btn-primary pull-left" >Retour à la liste</a>
+                            <input type="submit" value="Créer" class="btn btn-success" />
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
