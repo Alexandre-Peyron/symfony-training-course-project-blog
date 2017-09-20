@@ -8,7 +8,6 @@ var runSequence = require('run-sequence');
 var bower = require('gulp-bower');
 var del = require('del');
 var livereload = require('gulp-livereload');
-var modernizr = require('gulp-modernizr');
 
 var config = {
     bowerDir: './bower_components',
@@ -126,9 +125,7 @@ gulp.task('move-images-media-bundle' , function(){
  * JS
  */
 
-gulp.task('admin-js', ['login-js', 'admin-main-js']);
-
-gulp.task('admin-main-js', function() {
+gulp.task('admin-js', function() {
     gulp.src(configAdmin.globalJS)
         .pipe(sourcemaps.init())
         .pipe(concat('main-admin.js'))
@@ -137,19 +134,11 @@ gulp.task('admin-main-js', function() {
         .pipe(livereload());
 });
 
-gulp.task('login-js', function(){
-    return gulp.src(configAdmin.loginJS)
-        .pipe(concat('main-login.js'))
-        .pipe(gulp.dest('./web/admin/js/'));
-});
-
 /**********************************************************************************
  * CSS
  */
 
-gulp.task('admin-css', ['login-css', 'admin-main-css']);
-
-gulp.task('admin-main-css', function() {
+gulp.task('admin-css', function() {
     return sass(config.adminDir + '/scss/main.scss', {
             style: 'compressed',
             sourcemap: true,
@@ -161,23 +150,13 @@ gulp.task('admin-main-css', function() {
         .pipe(livereload());
 });
 
-
-gulp.task('login-css', function(){
-    return gulp.src(configAdmin.loginCSS)
-        .pipe(concat('main-login.css'))
-        .pipe(gulp.dest('./web/admin/css/'));
-});
-
-
 /**********************************************************************************
  * BUILD
  */
 
 gulp.task('build', ['build-admin']);
 
-gulp.task('build-admin', function(){
-    runSequence('bower', [ 'icons-admin', 'admin-css', 'modernizr', 'admin-js']);
-});
+gulp.task('build-admin', [ 'icons-admin', 'admin-css', 'admin-js']);
 
 /**********************************************************************************
  * WATCHER
