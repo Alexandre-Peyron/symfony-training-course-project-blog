@@ -1,20 +1,38 @@
-var gulp = require('gulp');
-var path = require('path');
-var concat = require('gulp-concat');
+var gulp = require('gulp')
+var path = require('path')
+var concat = require('gulp-concat')
 var sass = require('gulp-ruby-sass')
-var sourcemaps = require('gulp-sourcemaps');
-var rename = require('gulp-rename');
-var runSequence = require('run-sequence');
-var bower = require('gulp-bower');
-var del = require('del');
-var livereload = require('gulp-livereload');
+var less = require('gulp-less')
+var sourcemaps = require('gulp-sourcemaps')
+var del = require('del')
+var livereload = require('gulp-livereload')
 
 var config = {
     bowerDir: './bower_components',
     npmDir: './node_modules',
-    frontDir: './app/Resources/assets/front',
+    frontDir: './src/AppBundle/Resources/assets',
     adminDir: './src/Admin/BlogBundle/Resources/assets'
-};
+}
+
+var configFront = {
+    globalLESS: [
+        config.bowerDir + '/font-awesome/less/font-awesome.less',
+        config.bowerDir + '/bootstrap/less/bootstrap.less',
+        config.frontDir + '/less/clean-blog.less'
+    ],
+    globalJS: [
+        config.bowerDir + '/jquery/dist/jquery.js',
+        config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js',
+        config.frontDir + '/js/clean-blog.js'
+    ],
+    img: [
+        config.frontDir + '/img/**/*'
+    ],
+    fonts: [
+        config.bowerDir + '/font-awesome/fonts/**.*',
+        config.bowerDir + '/bootstrap-sass/assets/fonts/bootstrap/**.js'
+    ]
+}
 
 var configAdmin = {
     mailSASS: [
@@ -25,7 +43,7 @@ var configAdmin = {
         config.bowerDir + '/bootstrap-sass/assets/stylesheets/',
         config.bowerDir + '/font-awesome/scss/',
     ],
-    globalJS:[
+    globalJS: [
         config.bowerDir + '/jquery/dist/jquery.js',
         config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js',
         config.bowerDir + '/datatables.net/js/jquery.dataTables.js',
@@ -40,131 +58,147 @@ var configAdmin = {
         config.bowerDir + '/font-awesome/fonts/**.*',
         config.bowerDir + '/bootstrap-sass/assets/fonts/bootstrap/**.js'
     ]
-};
-
-/**********************************************************************************
- * BOWER
- */
-
-gulp.task('bower', function() {
-    return bower()
-        .pipe(gulp.dest(config.bowerDir))
-});
+}
 
 /**********************************************************************************
  * CLEAN
  */
 
-gulp.task('clean', ['clean-front', 'clean-admin']);
+gulp.task('clean', ['clean-front', 'clean-admin'])
 
-gulp.task('clean-front', function() {
+gulp.task('clean-front', function () {
     return del([
         './web/front/js',
-        './web/front/css'
-    ]);
-});
+        './web/front/css',
+        './web/front/img',
+        './web/front/fonts'
+    ])
+})
 
-gulp.task('clean-admin', function() {
+gulp.task('clean-admin', function () {
     return del([
         './web/admin/js',
-        './web/admin/css'
-    ]);
-});
+        './web/admin/css',
+        './web/admin/img',
+        './web/admin/fonts'
+    ])
+})
 
 /**********************************************************************************
  * FONTS
  */
 
-gulp.task('icons', ['icons-front', 'icons-admin']);
+gulp.task('icons', ['front-icons', 'admin-icons'])
 
-gulp.task('icons-front', function() {
+gulp.task('front-icons', function () {
     return gulp.src(configFront.fonts)
-        .pipe(gulp.dest('./web/front/fonts'));
-});
+        .pipe(gulp.dest('./web/front/fonts'))
+})
 
-gulp.task('icons-admin', function() {
+gulp.task('admin-icons', function () {
     return gulp.src(configAdmin.fonts)
-        .pipe(gulp.dest('./web/admin/fonts'));
-});
+        .pipe(gulp.dest('./web/admin/fonts'))
+})
 
 /**********************************************************************************
  * IMAGE
  */
 
-gulp.task('move-images', ['move-images-front', 'move-images-admin']);
+gulp.task('images', ['front-images', 'images-admin'])
 
-
-gulp.task('move-images-front' ,['clean-images-front'], function(){
+gulp.task('front-images', ['clean-images-front'], function () {
     return gulp.src(configFront.img)
-        .pipe(gulp.dest('./web/front/img'));
-});
+        .pipe(gulp.dest('./web/front/img'))
+})
 
-gulp.task('clean-images-front', function(){
+gulp.task('clean-images-front', function () {
     return del([
         './web/front/img/*'
-    ]);
-});
+    ])
+})
 
-gulp.task('move-images-admin' ,['clean-images-admin', 'move-images-media-bundle'], function(){
+gulp.task('admin-images', ['clean-images-admin', 'move-images-media-bundle'], function () {
     return gulp.src(configAdmin.images)
-        .pipe(gulp.dest('./web/admin/img'));
-});
+        .pipe(gulp.dest('./web/admin/img'))
+})
 
-gulp.task('clean-images-admin', function(){
+gulp.task('clean-images-admin', function () {
     return del([
         './web/admin/img/*'
-    ]);
-});
-
-gulp.task('move-images-media-bundle' , function(){
-    return gulp.src(configAdmin.mediaBundleImg)
-        .pipe(gulp.dest('./web/admin/img/media-bundle'));
-});
+    ])
+})
 
 /**********************************************************************************
  * JS
  */
 
-gulp.task('admin-js', function() {
+gulp.task('front-js', function () {
+    gulp.src(configFront.globalJS)
+        .pipe(sourcemaps.init())
+        .pipe(concat('main-front.js'))
+        .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest('./web/front/js'))
+        .pipe(livereload())
+})
+
+gulp.task('admin-js', function () {
     gulp.src(configAdmin.globalJS)
         .pipe(sourcemaps.init())
         .pipe(concat('main-admin.js'))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./web/admin/js'))
-        .pipe(livereload());
-});
+        .pipe(livereload())
+})
 
 /**********************************************************************************
  * CSS
  */
 
-gulp.task('admin-css', function() {
+gulp.task('less', function () {
+
+});
+
+gulp.task('front-css', function () {
+    return gulp.src(configFront.globalLESS)
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./web/front/css'))
+        .pipe(livereload())
+})
+
+gulp.task('admin-css', function () {
     return sass(config.adminDir + '/scss/main.scss', {
-            style: 'compressed',
-            sourcemap: true,
-            loadPath:  configAdmin.globalSASS
-        })
-        .on("error", sass.logError)
+        style: 'compressed',
+        sourcemap: true,
+        loadPath: configAdmin.globalSASS
+    })
+        .on('error', sass.logError)
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./web/admin/css'))
-        .pipe(livereload());
-});
+        .pipe(livereload())
+})
 
 /**********************************************************************************
  * BUILD
  */
 
-gulp.task('build', ['build-admin']);
+gulp.task('build', ['build-admin', 'build-front'])
 
-gulp.task('build-admin', [ 'icons-admin', 'admin-css', 'admin-js']);
+gulp.task('build-admin', ['admin-icons', 'admin-css', 'admin-js'])
+
+gulp.task('build-front', ['front-icons', 'front-images', 'front-css', 'front-js'])
 
 /**********************************************************************************
  * WATCHER
  */
 
-gulp.task('watch-admin', ['admin-js' ], function() {
-    livereload.listen();
+gulp.task('watch', ['front-js', 'front-css', 'admin-js', 'admin-css'], function () {
+    livereload.listen()
 
-    // gulp.watch([configFront.sassFiles ], ['front-css']);
-    gulp.watch([configAdmin.globalJS], ['admin-js']);
-});
+    gulp.watch([configFront.globalLESS], ['front-css'])
+    gulp.watch([configFront.globalJS], ['front-js'])
+    gulp.watch([configAdmin.globalSASS], ['admin-css'])
+    gulp.watch([configAdmin.globalJS], ['admin-js'])
+})

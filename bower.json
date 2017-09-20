@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "bootstrap-sass": "bootstrap-sass-official#^3.3.7",
     "datatables.net": "^1.10.16",
-    "datatables.net-bs": "^2.1.1"
+    "datatables.net-bs": "^2.1.1",
+    "bootstrap": "^3.3.7"
   }
 }

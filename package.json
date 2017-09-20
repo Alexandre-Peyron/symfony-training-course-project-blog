@@ -13,7 +13,7 @@
     "gulp-clean-css": "^3.*",
     "gulp-concat": "^2.6.0",
     "gulp-css-url-adjuster": "^0.2.3",
-    "gulp-modernizr": "^1.0.0-alpha",
+    "gulp-less": "^3.3.2",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
