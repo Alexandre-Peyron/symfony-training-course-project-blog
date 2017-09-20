@@ -10,7 +10,7 @@ Projet utilisé dans le cadre de mes cours sur Symfony.
 - Avoir [NodeJS](https://nodejs.org/fr/) installé
 - Avoir [Bower](https://bower.io/) installé
 - Avoir [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installé
-- Pouvoir utiliser la commande "make"
+- Pouvoir utiliser la commande "make" (optionnel)
 
 
 ### Installation du projet :
@@ -35,11 +35,14 @@ Si make n'est pas disponible, exécutez dans l'ordre :
 
 ### Sources externes
 
-Template
-- [Gentalella Admin Template](https://github.com/puikinsh/gentelella)
+Framework PHP
+- [Symfony 3](https://symfony.com/)
 
 Framework CSS
 - [Bootstrap sass](https://github.com/twbs/bootstrap-sass)
+
+Template
+- [Gentelella Admin Template](https://github.com/puikinsh/gentelella)
 
 JS
 - [jQuery](https://jquery.com/)
@@ -47,3 +50,11 @@ JS
 
 Fonts
 - [Font Awesome](http://fontawesome.io/)
+
+Gestionnaire de tâches
+- [Gulp](https://gulpjs.com/)
+
+Gestionnaires de dépendances
+- [Composer](https://getcomposer.org/)
+- [NPM](https://nodejs.org/fr/)
+- [Bower](https://bower.io/)
