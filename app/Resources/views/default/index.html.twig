@@ -20,7 +20,7 @@
 
     {% for article in articles %}
         <div class="post-preview">
-            <a href="">
+            <a href="{{ path('front_article_show', {'slug' : article.slug }) }}">
                 <h2 class="post-title">
                     {{ article.title }}
                 </h2>
@@ -28,7 +28,7 @@
                     {{ article.hat }}
                 </h3>
             </a>
-            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+            <p class="post-meta">Posté le {{ article.createdAt|date('d-m-Y') }}</p>
         </div>
         <hr>
     {% endfor %}

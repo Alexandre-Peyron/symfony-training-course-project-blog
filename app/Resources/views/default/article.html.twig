@@ -1,0 +1,23 @@
+{% extends 'layout-front.html.twig' %}
+
+{% block header %}
+    <header class="intro-header" style="background-image: url({{ asset('front/img/post-bg.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ article.title }}</h1>
+                        <h2 class="subheading">{{ article.hat }}</h2>
+                        <span class="meta">Posté le {{ article.createdAt|date('d-m-Y') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+    {{ article.content|raw }}
+
+{% endblock content %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Admin\BlogBundle\Entity\Article;
 use Admin\BlogBundle\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,5 +32,17 @@ class DefaultController extends Controller
     {
         return $this->render('default/about.html.twig');
     }
+
+    /**
+     * @Route("/article/{slug}", name="front_article_show")
+     */
+    public function showArticleAction(Article $article)
+    {
+        return $this->render('default/article.html.twig', [
+            'article' => $article
+        ]);
+    }
+
+
 
 }
