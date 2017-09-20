@@ -4,7 +4,7 @@ symfony-training-course-project
 Projet utilisé dans le cadre de mes cours sur Symfony.
 
 
-###Prérequis :
+### Prérequis :
 
 - Avoir [Composer](https://getcomposer.org/download/) installé
 - Avoir [NodeJS](https://nodejs.org/fr/) installé
@@ -13,7 +13,7 @@ Projet utilisé dans le cadre de mes cours sur Symfony.
 - Pouvoir utiliser la commande "make"
 
 
-###Installation du projet :
+### Installation du projet :
 
 Clonez le projet.
 
@@ -31,3 +31,19 @@ Si make n'est pas disponible, exécutez dans l'ordre :
 - npm install
 - bower install
 - gulp build
+
+
+### Sources externes
+
+Template
+- [Gentalella Admin Template](https://github.com/puikinsh/gentelella)
+
+Framework CSS
+- [Bootstrap sass](https://github.com/twbs/bootstrap-sass)
+
+JS
+- [jQuery](https://jquery.com/)
+- [Datatables](https://datatables.net/)
+
+Fonts
+- [Font Awesome](http://fontawesome.io/)
