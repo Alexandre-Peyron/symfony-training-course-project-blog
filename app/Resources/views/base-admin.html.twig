@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Administration - Symfony Sample project{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/main.css') }}" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body class="{% block bodyclass %} {% endblock %}" >
+{% block body %}
+{% endblock body %}
+{% block javascripts %}
+    <script type="application/javascript" src="{{ asset('admin/js/main-admin.js') }}"></script>
+{% endblock %}
+</body>
+</html>

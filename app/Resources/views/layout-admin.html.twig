@@ -1,10 +1,4 @@
-{% extends '::base.html.twig' %}
-
-
-{% block stylesheets %}
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/css/main.css') }}" rel="stylesheet">
-{% endblock %}
+{% extends '::base-admin.html.twig' %}
 
 {% block bodyclass %}nav-md{% endblock %}
 {% block body %}
@@ -24,10 +18,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-
-{% block javascripts %}
-
-    <script type="application/javascript" src="{{ asset('admin/js/main-admin.js') }}"></script>
 {% endblock %}
