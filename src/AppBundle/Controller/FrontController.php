@@ -6,7 +6,7 @@ use Admin\BlogBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class FrontController extends Controller
 {
     /**
      * Homepage
@@ -22,7 +22,7 @@ class DefaultController extends Controller
         $articles = $em->getRepository('AdminBlogBundle:Article')->findAllOrderByDate();
 
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('front/index.html.twig', [
             'articles' => $articles
         ]);
     }
@@ -36,7 +36,7 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('default/about.html.twig');
+        return $this->render('front/about.html.twig');
     }
 
     /**
@@ -50,7 +50,7 @@ class DefaultController extends Controller
      */
     public function showArticleAction(Article $article)
     {
-        return $this->render('default/article.html.twig', [
+        return $this->render('front/article.html.twig', [
             'article' => $article
         ]);
     }
