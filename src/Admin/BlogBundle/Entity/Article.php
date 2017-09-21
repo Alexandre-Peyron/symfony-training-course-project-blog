@@ -2,9 +2,10 @@
 
 namespace Admin\BlogBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -14,6 +15,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Article
 {
+    const COVER_DIRECTORY = '/uploads/cover/';
+
     /**
      * @var int
      *
@@ -77,6 +80,16 @@ class Article
      * @ORM\JoinTable(name="article_tag")
      */
     private $tags;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="S'il vous plait, ajoutez une image de couverture")
+     * @Assert\File(mimeTypes={ "image/jpeg","image/png"  })
+     */
+    private $cover;
 
     /**
      * Article constructor.
@@ -298,5 +311,38 @@ class Article
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Get Cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     *
+     * @return Article
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover path in web/uploads
+     *
+     * @return string
+     */
+    public function getCoverWebPath() {
+        return self::COVER_DIRECTORY. $this->getCover();
     }
 }

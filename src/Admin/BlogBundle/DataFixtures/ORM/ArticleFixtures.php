@@ -17,6 +17,7 @@ class ArticleFixtures extends Fixture
         $article = new Article();
         $article->setTitle('Mon premier article');
         $article->setHat('Ici je vous parle de mon premier article');
+        $article->setCover('fixtures/post-bg.jpg');
         $article->setContent('<p>Ceci est le contenu de mon premier article</p>');
         $article->setCategory($this->getReference('cat-dev'));
         $article->addTag($this->getReference('tag-javascript'));
@@ -27,6 +28,7 @@ class ArticleFixtures extends Fixture
         $article2 = new Article();
         $article2->setTitle('Mon Deuxième article');
         $article2->setHat('En voici un différent');
+        $article2->setCover('fixtures/post-bg.jpg');
         $article2->setContent('<p>Un article avec plein de contenu diff&eacute;rents</p>
 
 <p><s>ici un barr&eacute;</s></p>
