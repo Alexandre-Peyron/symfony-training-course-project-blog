@@ -1,4 +1,6 @@
 services:
-#    admin_blog.example:
-#        class: Admin\BlogBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    Admin\BlogBundle\EventListener\CoverUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }

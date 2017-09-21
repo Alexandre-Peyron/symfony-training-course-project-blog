@@ -2,8 +2,8 @@
 
 namespace Admin\BlogBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -94,7 +94,8 @@ class Article
     /**
      * Article constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->tags = new ArrayCollection();
 
         $this->createdAt = new \DateTime('now');
@@ -337,12 +338,30 @@ class Article
         return $this;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getCoverUploadDirectory()
+    {
+        return __DIR__ . "/../../../../web" . self::COVER_DIRECTORY;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCoverAbsolutePath()
+    {
+        return $this->getCoverUploadDirectory() . $this->getCover();
+    }
+
     /**
      * Get cover path in web/uploads
      *
      * @return string
      */
-    public function getCoverWebPath() {
-        return self::COVER_DIRECTORY. $this->getCover();
+    public function getCoverWebPath()
+    {
+        return self::COVER_DIRECTORY . $this->getCover();
     }
 }
