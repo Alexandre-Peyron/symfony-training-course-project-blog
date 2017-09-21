@@ -19,7 +19,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('AdminBlogBundle:Article')->findAll();
+        $articles = $em->getRepository('AdminBlogBundle:Article')->findAllOrderByDate();
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
@@ -45,6 +45,7 @@ class DefaultController extends Controller
      * @Route("/article/{slug}", name="front_article_show")
      *
      * @param Article $article An article instance directly request by SF
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showArticleAction(Article $article)
@@ -53,7 +54,4 @@ class DefaultController extends Controller
             'article' => $article
         ]);
     }
-
-
-
 }

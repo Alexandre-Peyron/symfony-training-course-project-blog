@@ -22,4 +22,17 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    /**
+     * @param string $ordering
+     *
+     * @return array
+     */
+    public function findAllOrderByDate($ordering = 'ASC')
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', $ordering);
+
+        return $qb->getQuery()->getResult();
+    }
 }
