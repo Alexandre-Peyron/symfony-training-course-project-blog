@@ -19,7 +19,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('hat')
-            ->add('cover', FileType::class)
+            ->add('file', FileType::class)
             ->add('content', CKEditorType::class)
             ->add('category', EntityType::class, array(
                 'class' => 'Admin\BlogBundle\Entity\Category',

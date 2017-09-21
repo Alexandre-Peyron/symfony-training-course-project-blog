@@ -5,6 +5,7 @@ namespace Admin\BlogBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -96,11 +97,16 @@ class Article
      * @var string
      *
      * @ORM\Column(type="string")
+     */
+    private $cover;
+
+    /**
+     * @var File
      *
      * @Assert\NotBlank(message="S'il vous plait, ajoutez une image de couverture")
      * @Assert\File(mimeTypes={ "image/jpeg","image/png"  })
      */
-    private $cover;
+    private $file;
 
     /**
      * Article constructor.
@@ -346,6 +352,22 @@ class Article
         $this->cover = $cover;
 
         return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param File $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
     }
 
     /**

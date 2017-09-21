@@ -29,7 +29,7 @@ class CoverUploadListener
         }
 
         if ($fileName = $entity->getCover()) {
-            $entity->setCover(new File($entity->getCoverAbsolutePath()));
+            $entity->setFile(new File($entity->getCoverAbsolutePath()));
         }
     }
 
@@ -69,7 +69,7 @@ class CoverUploadListener
             return;
         }
 
-        $file = $entity->getCover();
+        $file = $entity->getFile();
 
         $fileName = null;
 
