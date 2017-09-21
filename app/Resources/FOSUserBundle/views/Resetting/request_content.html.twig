@@ -1,0 +1,26 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+
+                <h1>Mot de passe oublié</h1>
+                <div>
+                    <input type="text" id="username" name="username" placeholder="Adresse mail" required="required" />
+                </div>
+                <div>
+                    <button type="submit" id="_submit" class="btn btn-default submit" name="_submit">{{ 'resetting.request.submit'|trans }}</button>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="separator">
+                    <div>
+                        <p>©2017 All Rights Reserved. Alexandre Peyron</p>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

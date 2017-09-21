@@ -17,8 +17,8 @@
                     <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Password" />
                 </div>
                 <div>
-                    <button type="submit" id="_submit" class="btn btn-default submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >Connexion</button>
-                    <a class="reset_pass" href="#">Mot de passe perdu ?</a>
+                    <button type="submit" id="_submit" class="btn btn-default submit" name="_submit">{{ 'security.login.submit'|trans }}</button>
+                    <a class="reset_pass" href="{{ path('fos_user_resetting_request') }}">Mot de passe perdu ?</a>
                 </div>
 
                 {% if error %}
