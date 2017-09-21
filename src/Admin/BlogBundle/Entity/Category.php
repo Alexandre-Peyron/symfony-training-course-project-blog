@@ -27,6 +27,8 @@ class Category
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(message="Un catégorie sans nom, c'est idiot")
      */
     private $name;
 
@@ -34,6 +36,7 @@ class Category
      * @var string
      *
      * @Gedmo\Slug(fields={"name"})
+     *
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
@@ -49,11 +52,14 @@ class Category
      * @var int
      *
      * @Gedmo\Sortable
+     *
      * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Admin\BlogBundle\Entity\Article", mappedBy="category")
      */
     private $articles;
@@ -65,7 +71,6 @@ class Category
     {
         $this->articles = new ArrayCollection();
     }
-
 
     /**
      * Get id

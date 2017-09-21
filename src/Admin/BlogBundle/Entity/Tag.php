@@ -27,6 +27,8 @@ class Tag
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(message="Un tag sans nom, quelle idée ?!")
      */
     private $name;
 
@@ -34,6 +36,7 @@ class Tag
      * @var string
      *
      * @Gedmo\Slug(fields={"name"})
+     *
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
@@ -46,6 +49,7 @@ class Tag
     private $description;
 
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Admin\BlogBundle\Entity\Article", mappedBy="tags")
      */

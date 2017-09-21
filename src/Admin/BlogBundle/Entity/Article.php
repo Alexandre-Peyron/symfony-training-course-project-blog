@@ -30,6 +30,8 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(message="Le titre est obligatoire")
      */
     private $title;
 
@@ -37,6 +39,7 @@ class Article
      * @var string
      *
      * @Gedmo\Slug(fields={"title"})
+     *
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
@@ -45,6 +48,8 @@ class Article
      * @var string
      *
      * @ORM\Column(name="hat", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Le Chapeau est obligatoire")
      */
     private $hat;
 
@@ -52,6 +57,8 @@ class Article
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     *
+     * @Assert\NotBlank(message="Attention votre article n'a pas de contenu")
      */
     private $content;
 
@@ -70,12 +77,16 @@ class Article
     private $updatedAt;
 
     /**
+     * @var Category
+     *
      * @ORM\ManyToOne(targetEntity="Admin\BlogBundle\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Admin\BlogBundle\Entity\Tag", inversedBy="articles")
      * @ORM\JoinTable(name="article_tag")
      */
@@ -100,7 +111,6 @@ class Article
 
         $this->createdAt = new \DateTime('now');
     }
-
 
     /**
      * Get id
@@ -337,7 +347,6 @@ class Article
 
         return $this;
     }
-
 
     /**
      * @return string
