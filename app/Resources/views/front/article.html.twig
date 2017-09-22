@@ -8,7 +8,7 @@
                     <div class="post-heading">
                         <h1>{{ article.title }}</h1>
                         <h2 class="subheading">{{ article.hat }}</h2>
-                        <span class="meta">Posté le {{ article.createdAt|date('d-m-Y') }}</span>
+                        <span class="meta">{{ 'global.posted_at'|trans }} {{ article.createdAt|date('d-m-Y') }}</span>
                     </div>
                 </div>
             </div>

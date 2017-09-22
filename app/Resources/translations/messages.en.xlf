@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="home.title">
+                <source>home.title</source>
+                <target>Symfony Sample Project</target>
+            </trans-unit>
+            <trans-unit id="home.subtitle">
+                <source>home.subtitle</source>
+                <target>Sample project for students</target>
+            </trans-unit>
+            <trans-unit id="global.posted_at">
+                <source>global.posted_at</source>
+                <target>Posted at</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
